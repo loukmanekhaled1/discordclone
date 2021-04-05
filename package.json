@@ -1,0 +1,15 @@
+{
+  "name": "discordclone",
+  "version": "1.0.0",
+  "description": "discord clone from 5/4/2021 to 12/4/2021",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo Hello World"
+  },
+  "repository": {
+    "type": "git",
+    "url": "discordclone"
+  },
+  "author": "Loukmane Khaled",
+  "license": "ISC"
+}
