@@ -3,14 +3,14 @@ const express = require('express');
 const app = express();
 const cookies = require('cookies');
 const fs = require('fs');
-
+const db_operations = require('./db_operations');
 var port = process.env.PORT || 3000;
 app.use(cookies.express("a","b","c"));
 
 app.use(express.static((__dirname+'/views/assets')));
 app.set('views', __dirname+'/views');
 app.set('view engine','ejs');
-
+app.use('/',db_operations);
 app.get('/',(req,res)=>{
     if(res.cookies.get('ID')){
 
