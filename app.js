@@ -5,7 +5,14 @@ const cookies = require('cookies');
 const fs = require('fs');
 const db_operations = require('./db_operations');
 var port = process.env.PORT || 3000;
+
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
 app.use(cookies.express("a","b","c"));
+
 
 app.use(express.static((__dirname+'/views/assets')));
 app.set('views', __dirname+'/views');
