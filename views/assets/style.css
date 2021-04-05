@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    font-family: 'Roboto';
+}
+.error{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.error h1{
+font-family: 'Open Sans';
+font-size: 56px;
+font-weight: 400;
+}
+.error p{
+    color:rgb(107, 107, 107);
+    font-size: 14px;
+    font-family: "Segoe UI";
+}
+body{
+    background-color: #2f3136;
+}
+.logo
+{
+    opacity: 1; transform: translateY(0px) translateZ(0px);    --header-primary: #fff;
+--header-secondary: #b9bbbe;
+--text-normal: #dcddde;
+--text-muted: #72767d;
+--text-link: #00b0f4;
+--channels-default: #8e9297;
+--interactive-normal: #b9bbbe;
+--interactive-hover: #dcddde;
+--interactive-active: #fff;
+--interactive-muted: #4f545c;
+--background-primary: #36393f;
+--background-secondary: #2f3136;
+--background-secondary-alt: #292b2f;
+--background-tertiary: #202225;
+--background-accent: #4f545c;
+--background-floating: #18191c;
+--background-mobile-primary: #36393f;
+--background-mobile-secondary: #2f3136;
+--background-modifier-hover: rgba(79,84,92,0.16);
+--background-modifier-active: rgba(79,84,92,0.24);
+--background-modifier-selected: rgba(79,84,92,0.32);
+--background-modifier-accent: hsla(0,0%,100%,0.06);
+--background-mentioned: rgba(250,166,26,0.05);
+--background-mentioned-hover: rgba(250,166,26,0.08);
+--background-message-hover: rgba(4,4,5,0.07);
+--background-help-warning: rgba(250,166,26,0.1);
+--background-help-info: rgba(0,176,244,0.1);
+--scrollbar-thin-thumb: #202225;
+--scrollbar-thin-track: transparent;
+--scrollbar-auto-thumb: #202225;
+--scrollbar-auto-track: #2e3338;
+--scrollbar-auto-scrollbar-color-thumb: #202225;
+--scrollbar-auto-scrollbar-color-track: #2f3136;
+--elevation-stroke: 0 0 0 1px rgba(4,4,5,0.15);
+--elevation-low: 0 1px 0 rgba(4,4,5,0.2),0 1.5px 0 rgba(6,6,7,0.05),0 2px 0 rgba(4,4,5,0.05);
+--elevation-medium: 0 4px 4px rgba(0,0,0,0.16);
+--elevation-high: 0 8px 16px rgba(0,0,0,0.24);
+--logo-primary: #fff;
+--focus-primary: #00b0f4;
+--radio-group-dot-foreground: #8ea1e1;
+--guild-header-text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+--channeltextarea-background: #40444b;
+--activity-card-background: #202225;
+--textbox-markdown-syntax: #8e9297;
+--deprecated-card-bg: rgba(32,34,37,0.6);
+--deprecated-card-editable-bg: rgba(32,34,37,0.3);
+--deprecated-store-bg: #36393f;
+--deprecated-quickswitcher-input-background: #72767d;
+--deprecated-quickswitcher-input-placeholder: hsla(0,0%,100%,0.3);
+--deprecated-text-input-bg: rgba(0,0,0,0.1);
+--deprecated-text-input-border: rgba(0,0,0,0.3);
+--deprecated-text-input-border-hover: #040405;
+--deprecated-text-input-border-disabled: #202225;
+--deprecated-text-input-prefix: #dcddde;
+line-height: 1;
+user-select: none;
+text-rendering: optimizeLegibility;
+-webkit-box-direction: normal;
+padding: 0;
+border: 0;
+font-weight: inherit;
+font-style: inherit;
+font-family: inherit;
+font-size: 100%;
+vertical-align: baseline;
+color: var(--text-link);
+text-decoration: none;
+cursor: pointer;
+outline: 0;
+-webkit-box-flex: 0;
+flex: 0 0 auto;
+width: 130px;
+height: 36px;
+background: url('https://www.discord.com/assets/4f004ac9be168ac6ee18fc442a52ab53.svg') no-repeat;
+position: fixed;
+top: 24px;
+left: 24px;
+margin: 0;
+opacity: 1;
+transform: translateY(0px) translateZ(0px);
+}
+.sForm{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding:30px;
+    background-color: #36393f;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 500px;
+}
+.sForm .field{
+    display: flex;
+    flex-direction: column;
+}
+.sForm h1{
+    color:#fff;
+    font-size: 28px;
+    margin-bottom:10px;
+    font-weight: 500;
+}
+.sForm label{
+
+    font-size: 15px;
+    font-weight: 400;
+    color:#B9BBBE;
+    margin-bottom: 10px;
+}
+.sForm .field input{
+    padding:10px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 3px;
+    font-family: 'Open Sans';
+    border:1px solid #212327;
+    background-color: #303338;
+    color: #fff;
+    transition: border-color 120ms linear;
+}
+.sForm .field label{
+    text-transform: uppercase;
+    text-align: start;
+    margin:15px 0 8px 0;
+    font-weight: 600;
+    font-size: 13px;
+    color:#8E9297;
+}
+.sForm a{
+    color:#7289DA;
+    text-align: start;
+    font-weight: 400;
+    
+    font-size: 14px;
+    margin:7px 0 15px 0;
+}
+.sForm button{
+    padding:12px;
+    font-size: 16px;
+    color:#fff;
+    background-color: #7289DA;
+    border:none;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 120ms linear;
+}
+.sForm p{
+    text-align: start;
+    color:#72767d;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Segoe UI';
+}
+.sForm a:hover{
+    text-decoration:underline;
+}
+.sForm button:hover{
+    background-color: #6a7fcc;
+}
+.sForm button:active{
+    background-color: #6478bd;
+}
+.sForm input:focus{
+    border-color: #7289DA;
+}
+.sForm .flex .selects{
+   
+    flex-direction: row;
+    flex: 1 1 100%;
+    margin-bottom: 15px;
+}
+.sForm .flex .selects *{
+    width: 32.5%;
+    padding:10px;
+    font-size: 16px;
+    background-color: #0000001A;
+    border-radius: 3px;
+    border:1px solid #212327;
+    color:#72767d;
+    cursor: pointer;
+}
+.flex{
+    display: flex;
+}

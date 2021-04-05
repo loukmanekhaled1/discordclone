@@ -4,6 +4,7 @@
   "description": "discord clone from 5/4/2021 to 12/4/2021",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo Hello World"
   },
   "repository": {
@@ -11,5 +12,14 @@
     "url": "discordclone"
   },
   "author": "Loukmane Khaled",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookies": "^0.8.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7"
+  }
 }

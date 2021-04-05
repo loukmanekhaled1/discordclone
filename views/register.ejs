@@ -1,0 +1,41 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<a href="/" target="_blank" rel="noopener" class="logo"></a>
+
+<form action="/login" method="POST" id="loginForm" class="sForm">
+    <h1>Ha, te revoilà !</h1>
+    <label>Nous sommes si heureux de te revoir !</label>
+    <div class="field">
+        <label>E-mail</label>
+        <input type="text" name="email" autocomplete="off">
+    </div>
+    <div class="field">
+        <label>Nom d'utilisateur</label>
+        <input type="text" name="email" autocomplete="off">
+    </div>
+    <div class="field">
+        <label>Mot de passe</label>
+        <input type="password" name="password">
+    </div>
+    <div class="flex field">
+
+        <label>Date de naissance </label>
+     <div class="selects">
+         <select name="day">
+            <option value="none">day</option>
+        </select>
+        <select name="month">
+            <option value="none">month</option>
+        </select>
+        <select name="year">
+            <option value="none">year</option>
+        </select>
+     </div>
+        
+    </div>
+    
+    <button type="submit">Continue</button>
+    <a href="" class="f">Tu as déjà un compte ?</a>
+    <p>En t'inscrivant, tu acceptes les <a href="">Conditions d'Utilisation</a> et la <a href="">Politique de Confidentialité</a> de Discord.</p>
+</form>
