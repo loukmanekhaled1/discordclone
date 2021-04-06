@@ -1,5 +1,5 @@
 "use strict"
-
+document.title = "Discord - Register"
 const submitRBTNVAL = document.querySelector('#registerForm').submit.innerHTML;
 let dateDropdown = document.querySelector('#registerForm').year;
 

@@ -1,5 +1,5 @@
 "use strict"
-
+document.title = "Discord - Login";
 document.querySelector('#loginForm').submit.onclick = function(){
     var email = document.querySelector('#loginForm').email;
     var password = document.querySelector('#loginForm').password;

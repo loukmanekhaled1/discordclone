@@ -6,7 +6,14 @@
     box-sizing: border-box;
     outline: none;
     text-decoration: none;
-    font-family: 'Roboto';
+    font-family: 'Open Sans';
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+   -webkit-tap-highlight-color: transparent;
+   text-rendering: optimizeLegibility;
 }
 .error{
     position: absolute;
@@ -300,6 +307,8 @@ transform: translateY(0px) translateZ(0px);
     transform: translate(-1%,1.5%);
 }
 #createServer{
+    display: flex;
+    flex-direction: row;
     position: fixed;
     top:0;
     left:0;
@@ -318,6 +327,7 @@ transform: translateY(0px) translateZ(0px);
     }
 }
 #createServer .CForm{
+    overflow: hidden;
     position: fixed;
     top:50%;
     left:50%;
@@ -327,19 +337,45 @@ transform: translateY(0px) translateZ(0px);
     padding:15px;
     border-radius: 5px;
     width: 450px;
-    animation: createServerCForm 90ms ease-in-out;
+    animation: createServerCForm 100ms ease-in-out;
+    opacity: 1;
+    transition: all 120ms ease-in-out;
+}
+#createServer .CForm.CC
+{
+    animation: createServerCFormCC 110ms ease-in-out;
+    transform: translate(-50%,-50%) scale(0);
+    
+}
+#createServer .CForm button,p,a,div,h1{
+    font-family: 'Open Sans';
 }
 @keyframes createServerCForm{
     0%{
        
-        transform: translate(-50%,-50%) scale(0.3);
+        transform: translate(-50%,-50%) scale(0);
+        opacity: 0;
     }
     50%{
-        transform: translate(-50%,-50%) scale(0.5);
+        transform: translate(-50%,-50%) scale(0.6);
+        opacity: 0.5;
     }
     100%{
         transform: translate(-50%,-50%) scale(1);
-
+        opacity: 1;
+    }
+}
+@keyframes createServerCFormCC{
+    0%{
+        transform: translate(-50%,-50%) scale(1);
+    }
+    50%{
+        transform: translate(-50%,-50%) scale(0.6);
+        opacity: 0.5;
+    }
+    100%{
+        transform: translate(-50%,-50%) scale(0);
+        opacity: 0;
     }
 }
 #createServer .CForm .close{
@@ -359,14 +395,13 @@ transform: translateY(0px) translateZ(0px);
 }
 #createServer .CForm .top .title{
     margin-bottom: 12px;
-    font-family: 'Open Sans';
     font-size: 25px;
     font-weight: 700;
 }
 #createServer .CForm .top p{
     color:#4F5660;
     font-size: 13px;
-    font-family: 'Open Sans';
+  
 }
 #createServer .CForm .tab{
     display: flex;
@@ -376,10 +411,13 @@ transform: translateY(0px) translateZ(0px);
     place-items: center;
     border-radius: 8px;
     position: relative;
+    margin-bottom: 8px;
+}
+#createServer .CForm .tab:last-child{
+    margin-bottom: 0;
 }
 #createServer .CForm .tab h1{
     font-size: 17px;
-    font-family: 'Open Sans';
     color:#2E3338;
     font-weight: 700;
     margin-left: 6px;
@@ -398,4 +436,108 @@ transform: translateY(0px) translateZ(0px);
 }
 #createServer .CForm .tab:active{
     background-color: #f3f3f3;
+}
+#createServer .a{
+    margin-top: 100px;
+}
+#createServer .CForm .bottom{
+    position: absolute;
+    bottom:0;
+    left:0;
+    background-color: #F6F6F7;
+    width: 100%;
+    padding:15px;
+    padding:20px 0 15px 0;
+}
+#createServer .CForm .bottom h1{
+    
+    font-size: 20px;
+    color:#2E3338;
+    margin-bottom: 10px;
+}
+#createServer .CForm .bottom button{
+    width: 420px;
+    padding:10px;
+    border:none;
+    border-radius: 3px;
+    background-color: #747F8D;
+    color:#fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 120ms linear;
+}
+#createServer .CForm .bottom button:hover{
+    background-color: #6a7481;
+}
+#createServer .CForm .bottom button:active{
+    background-color: #626b77;
+}
+#createServer .CForm .side1{
+    position: absolute;
+    top:20px;left:0;
+    z-index: -1;
+    padding:15px;
+    transform: translateX(-120%);
+}
+#createServer .CForm .hide{
+   animation: CFormslide1 140ms linear;
+   transform: translateX(-120%) !important;
+}
+
+#createServer .CForm .show{
+   animation: CFormslide2 140ms linear;
+   transform: translateX(0);
+    
+}
+@keyframes CFormslide1{
+    0%{
+        transform: translateX(0);
+        opacity:0.7;
+    }
+    100%{
+        transform: translateX(-120%);
+        opacity: 0;
+        display:none;
+    }
+}
+@keyframes CFormslide2{
+    0%{
+        transform: translateX(120%);
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+#createServer .CForm .foot{
+    margin:12px 0;
+    color:#4F5660;
+    font-size: 13px;
+    transform: scale(0.95);
+}
+#createServer .CForm .foot a{
+    color:#0067E0;
+    font-size: 13px;
+}
+#createServer .CForm.f1{
+    
+    height: 450px;
+    
+}
+#createServer .CForm.f1 .bottom{
+    bottom: -92px;
+}
+#createServer .CForm .bottom .return{
+    
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color:#000;
+    position: relative;
+    top:50%;
+    left:-40%;
+  
+    
 }
