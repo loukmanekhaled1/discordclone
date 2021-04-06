@@ -1,4 +1,5 @@
 "use strict"
+
 document.querySelector('#loginForm').submit.onclick = function(){
     var email = document.querySelector('#loginForm').email;
     var password = document.querySelector('#loginForm').password;
@@ -6,20 +7,34 @@ document.querySelector('#loginForm').submit.onclick = function(){
     email.style.borderColor = '';
     password.style.borderColor = '';
     var done = true;
-    if(email.value.trim() == '') {done=false; email.style.borderColor = '#FF0000'};
-    if(password.value.trim() == ''){done = false; password.style.borderColor = '#FF0000'};
+    if(email.value.trim() == '') {done=false; email.style.borderColor = '#F04747'};
+    if(password.value.trim() == ''){done = false; password.style.borderColor = '#F04747'};
     if(done == false) return;
     $.post({
         url:"/login",
         data:{email:email.value.trim(),password:password.value.trim()},
-        beforeLoad:function()
+        beforeSend:function()
         {
             document.querySelector('#loginForm').submit.innerHTML = '...';
         },
         success:function(res)
         {
             document.querySelector('#loginForm').submit.innerHTML = submitBTNVAL;
-            console.log(res);
+         
+            if(res == '0')
+            {
+                window.location.replace('/');
+            }
+            if(res == '404')
+            {
+                var fieldLabels = document.querySelectorAll('#loginForm .field label');
+                
+                    
+                    fieldLabels[0].innerHTML = "E-mail ou numéro de téléphone  - <i style='text-transform:normal;'>Identifiant ou mot de passe invalide.<i>";
+                    fieldLabels[0].style.color = '#F04747';
+                    fieldLabels[1].innerHTML = "Mot de passe  - <i>Identifiant ou mot de passe invalide.<i>";
+                    fieldLabels[1].style.color = '#F04747'
+            }
         }
     })
 }

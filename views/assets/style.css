@@ -214,7 +214,188 @@ transform: translateY(0px) translateZ(0px);
     border:1px solid #212327;
     color:#72767d;
     cursor: pointer;
+    transition: border-color 120ms linear;
 }
 .flex{
     display: flex;
+}
+.sForm .field label i {
+    font-weight: 400;
+    text-transform: none;
+    font-size: 12px;
+}
+.leftBar{
+    padding:10px;
+    position: fixed;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #202225;
+    display: flex;
+    flex-direction: column;
+
+}
+.leftBar .top{
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FFFFFF0F;
+    width: 50px;
+}
+.leftBar .top #showDM{
+    width: 100%;
+    height: 50px;
+    padding:12px;
+    background-color: #36393F;
+    border-radius: 50%;
+    border:none;
+    font-size: 18px;
+    color:#fff;
+    position: relative;
+    overflow:hidden;
+    transition: background 120ms linear,border-width 120ms linear,border-radius 120ms linear;
+    cursor: pointer;
+}
+.leftBar .top #showDM img{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+.leftBar .top #showDM:hover{
+    background-color: #6478bd;
+    border-radius: 20px;
+
+}
+.leftBar .top #showDM:active{
+    transform: translateY(2%);
+}
+.leftBar .guilds{
+    margin-top: 10px;
+}
+.leftBar .guilds button{
+    width: 100%;
+    height: 50px;
+    border:none;
+    border-radius: 50%;
+    background-color: #36393F;
+    transition: background 120ms linear, border-radius 120ms linear,color 120ms linear;
+    cursor: pointer;
+}
+.leftBar .guilds button:hover{
+    background-color: #43b581;
+    color:#fff !important;
+    border-radius: 20px;
+}
+.leftBar .guilds button:active{
+    transform: translateY(2%);
+}
+.leftBar .guilds #addGuild{
+    padding:12px;
+    color:#43b581;
+    position: relative;
+}
+.leftBar .guilds #addGuild i{
+    font-size: 23px;
+    
+    transform: translate(-1%,1.5%);
+}
+#createServer{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100vw;
+    animation: createServerF 120ms linear;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+@keyframes createServerF{
+    0%{
+        background-color: rgba(0,0,0,0);
+    }
+    100%{
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+#createServer .CForm{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    background-color: #fff;
+    padding:15px;
+    border-radius: 5px;
+    width: 450px;
+    animation: createServerCForm 90ms ease-in-out;
+}
+@keyframes createServerCForm{
+    0%{
+       
+        transform: translate(-50%,-50%) scale(0.3);
+    }
+    50%{
+        transform: translate(-50%,-50%) scale(0.5);
+    }
+    100%{
+        transform: translate(-50%,-50%) scale(1);
+
+    }
+}
+#createServer .CForm .close{
+    font-size: 25px;
+    color:#a7abb0;
+    position: absolute;
+    top:15px;
+    right:20px;
+    cursor: pointer;
+    transition: color 120ms linear;
+}
+#createServer .CForm .close:hover{
+    color:rgb(77, 77, 77);
+}
+#createServer .CForm .top{
+    margin:16px 0;
+}
+#createServer .CForm .top .title{
+    margin-bottom: 12px;
+    font-family: 'Open Sans';
+    font-size: 25px;
+    font-weight: 700;
+}
+#createServer .CForm .top p{
+    color:#4F5660;
+    font-size: 13px;
+    font-family: 'Open Sans';
+}
+#createServer .CForm .tab{
+    display: flex;
+    padding:8px 10px;
+    cursor: pointer;
+    border:1px solid #e4e4e4;
+    place-items: center;
+    border-radius: 8px;
+    position: relative;
+}
+#createServer .CForm .tab h1{
+    font-size: 17px;
+    font-family: 'Open Sans';
+    color:#2E3338;
+    font-weight: 700;
+    margin-left: 6px;
+}
+#createServer .CForm .tab i{
+    position: absolute;
+    right:10px;
+    top:50%;
+    font-size: 18px;
+    font-weight: 600;
+    color:rgb(82, 82, 82);
+    transform: translateY(-50%);
+}
+#createServer .CForm .tab:hover{
+    background-color: #fafafa;
+}
+#createServer .CForm .tab:active{
+    background-color: #f3f3f3;
 }
