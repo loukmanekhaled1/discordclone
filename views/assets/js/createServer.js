@@ -14,6 +14,7 @@ $('#tab1').click(function(){
     
     $('#createServer .CForm').addClass('f1');
     $('#createServer .CForm .h').addClass('hide');
+    $('#createServer .CForm .side1').removeClass('hide');
     $('#createServer .CForm .side1').addClass('show');
     
     
