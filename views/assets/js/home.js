@@ -1,6 +1,5 @@
 "use strict"
 document.title = "Discord";
-
 var currentUrl = "channels/";
 var currentTitle = "Discord";
 $('#addGuild').click(function(){
@@ -10,7 +9,7 @@ $('#addGuild').click(function(){
         {
             $('body').append(res);
         }
-    })
+    }) 
 })
 
     $.ajax({
@@ -21,13 +20,17 @@ $('#addGuild').click(function(){
         headers: { 'Access-Control-Allow-Origin': '*' },
         success:function(data)
         {
+            
+            
             if(data.lastPage == 0)
             {
                 $.ajax({
-                    url:'/body/dmSidebar.ejs',
+                    url:'/body/dm.ejs',
                     success:function(res)
                     {
-                        $('.sidebar').html(res);
+                        $('.container').html(res);
+                       
+                        $('.container .sidebar .bottom .left h2').html(data.pseudo);
 
                     }
                 })
@@ -37,6 +40,7 @@ $('#addGuild').click(function(){
             }
         }
     })
+    
 function updatePageState(title,url)
 {
  

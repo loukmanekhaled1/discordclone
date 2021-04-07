@@ -25,14 +25,14 @@ router.post('/login',(req,res)=>{
         {
             
             res.cookies.set('ID',result[0]['ID']);
-
+            res.locals.user = result[0];
             return res.send('0');
         }else{
             db.query(`SELECT * FROM users WHERE mobileNumber = '${user}' AND password = MD5('${password}')`,function(err,result){
              if(result.length == 1)
              {
                 locals.res.cookies.set('ID',result[0]['ID']);
-
+                res.locals.user = result[0];
                  
                  return res.send('0');
              }else{
@@ -56,13 +56,14 @@ router.post('/register',(req,res)=>{
         {
                
             res.cookies.set('ID',result[0]['ID']);
+            res.locals.user = result[0];
             res.send('0');
         }else{
             db.query(`INSERT INTO users (pseudo,email,password,birthdayDate) VALUES('${pseudo}','${email}',MD5('${password}'),'${birthdayDate}')`);
             db.query(`SELECT * FROM users WHERE email = '${email}' AND password = MD5('${password}')`,function(err,result){
          
                 res.cookies.set('ID',result[0]['ID']);
-
+                res.locals.user = result[0];
                 res.send('0');
             })
         }
