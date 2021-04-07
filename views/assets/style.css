@@ -703,3 +703,8 @@ transform: translateY(0px) translateZ(0px);
 .container .sidebar .ctn .c i:hover{
     color:#f0f4fa;
 }
+.container .sidebar .ctn .c *{cursor: pointer;}
+.container .sidebar .ctn .c *:hover{
+    color:#f0f4fa;
+
+}
