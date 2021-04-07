@@ -260,15 +260,15 @@ transform: translateY(0px) translateZ(0px);
     transition: background 120ms linear,border-width 120ms linear,border-radius 120ms linear;
     cursor: pointer;
 }
-.leftBar .top #showDM img{
-    width: 35px;
-    height: 35px;
+.leftBar .top #showDM svg{
+    width: 32px;
+    height: 32px;
     position: absolute;
     left:50%;
     top:50%;
     transform: translate(-50%,-50%);
 }
-.leftBar .top #showDM:hover{
+.leftBar .top #showDM:hover,.leftBar .top #showDM.selected{
     background-color: #6478bd;
     border-radius: 20px;
 
@@ -540,4 +540,87 @@ transform: translateY(0px) translateZ(0px);
     left:-40%;
   
     
+}
+.container{
+    width: calc(100% - 70px);
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:70px;
+}
+.sidebar {
+    width:240px;
+
+    display: flex;
+    flex-direction: column;
+    flex : 0 0 auto;
+    height: 100%;
+    background-color: var(--background-secondary);
+}
+.container .content{
+    position: absolute;
+    top:0;
+    left:240px;
+    width: calc(100% - 240px);
+    height: 100%;
+    background-color: #36393f;
+}
+.container .top{
+    padding:15px;
+    border-bottom: 1px solid #222222;
+    display: flex;
+    place-items: center;
+    color:#fff;
+    position: relative;
+}
+.container .content .top svg{
+    color:#72767d;
+}
+.container  .top h1{
+    font-family: 'Segoe UI';
+    font-size: 18px;
+    font-weight: 500;
+    margin-left:8px;
+}
+.container .content .top hr{
+    width: 1px;
+    height: 30px;
+    margin:0 10px;
+    border:none;
+    background-color: #FFFFFF0F;
+}
+.container .content .top p{
+    width: auto;
+    font-family: 'Segoe UI';
+    color:#B9BBBE;
+    font-weight: 400;
+    font-size: 15px;
+    overflow: hidden;
+    max-width: 100%;
+}
+.container .sidebar .top {
+    height: 61px;
+}
+.container .sidebar .top .far.fa-chevron-down{
+    position: absolute;
+    top:50%;
+    right:15px;
+    transform: translateY(-45%);
+    color:var(--header-primary);
+    font-size: 14px;
+}
+.container .content .right{
+    width: 405px;
+    height: calc(100% - 61px);
+    position: absolute;
+    right:0;
+    top:61px;
+    background-color: #2f3136;
+}
+.container .content .contentBase{
+    position: absolute;
+    top:61px;
+    left : 0;
+    width: calc(100% - 405px);
+    height: calc(100% - 61px);
 }

@@ -9,6 +9,10 @@ var db = require('mysql').createConnection({
     password:'',
 });
 
+
+
+
+
 router.post('/login',(req,res)=>{
    
     var user = req.body.email;
@@ -66,5 +70,25 @@ router.post('/register',(req,res)=>{
 
     
 })
+
+
+
+
+
+
+router.post('/getUser',(req,res)=>{
+    if(res.cookies.get('ID'))
+    {
+        db.query(`SELECT * FROM users WHERE ID = ${res.cookies.get('ID')}`,function(err,result){
+            if(err) throw err;
+            res.send(JSON.stringify(result[0]));
+        });
+
+    }
+})
+
+
+
+
 
 module.exports = router;
