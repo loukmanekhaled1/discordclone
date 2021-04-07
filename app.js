@@ -22,6 +22,7 @@ app.use(cors({
 app.use(express.static((__dirname+'/views/assets')));
 app.set('views', __dirname+'/views');
 app.set('view engine','ejs');
+app.engine('ejs', require('ejs').__express);
 app.use(cookies.express("a","b","c"));
 app.use(db_operations);
 
