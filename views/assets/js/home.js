@@ -26,10 +26,10 @@ $.post({
                
                    guildData = JSON.parse(guildData);
                     guildData = guildData[0]
-                    console.log(guildData.name)
+                 
                     var gds = guildData.name.split(' ');
                     var gtx = "";
-                    for(var i = 0;i<=3;i++)
+                    for(var i = 0;i<=2;i++)
                     {
                         if(gds[i] == undefined) break;
                         gtx+=gds[i][0];
@@ -129,15 +129,33 @@ function loadGuildContent(elem,guildID){
  
     $.post({
         url:'/loadGuild',
-        data:{
-            guildID:guildID
-        },
+        data:{guildID:guildID},
         success:function(res)
         {
             $('.selected').removeClass('selected');
             elem.classList.add('selected');
             $('.container').html(res);
-       
+            $.post({
+                url:'/getGuildCategories',
+                data:{guildID:guildID},
+                success:function(categories)
+                {
+                  
+                   categories.forEach((categorie)=>{
+                      console.log(categorie)
+                       $.post({
+                        url:'/getGuildChannels',
+                        data:{guildID:guildID,parent:categorie.increment},
+                        success:function(channels)
+                        {
+                          
+                            console.log(channels);
+                        }
+                    })
+                   })
+                    
+                }
+            })
                         
         }
     })

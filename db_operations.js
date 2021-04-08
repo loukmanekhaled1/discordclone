@@ -110,9 +110,9 @@ router.post('/createServer',(req,res)=>{
         var maxID = result[0]['max(ID)']+1;
      
         db.query(`INSERT INTO guildmembers (memberID,isOwner,guildID) VALUES(${res.cookies.get('ID')},1,${maxID})`)
-        db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('category','SALONS TEXTUELS',${maxID},0,0)`);
+        db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('category','SALONS TEXTUELS',${maxID},0,1)`);
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('text','general',${maxID},1,0)`);
-        db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('category','SALONS VOCAUX',${maxID},0,1)`);
+        db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('category','SALONS VOCAUX',${maxID},0,2)`);
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('voice','General',${maxID},1,0)`);
 
     })
@@ -162,5 +162,22 @@ router.post('/loadGuild',(req,res)=>{
     
 })
 
+
+router.post('/getGuildCategories',(req,res)=>{
+    var guildID = req.body.guildID;
+
+    db.query(`SELECT * FROM channels WHERE guildID = ${guildID} AND type = 'category' ORDER BY increment ASC`,function(err,result)
+    {
+        res.send(result);
+        console.log('sended');
+    })
+})
+router.post('/getGuildChannels',(req,res)=>{
+    db.query(`SELECT * FROM channels WHERE guildID = ${req.body.guildID} AND type = 'text' AND parent = ${req.body.parent} OR guildID = ${req.body.guildID} AND type = 'voice' AND parent = ${req.body.parent}`,function(err,result)
+    {
+        if(err) throw err;
+        res.send(result);
+    })
+})
 
 module.exports = router;
