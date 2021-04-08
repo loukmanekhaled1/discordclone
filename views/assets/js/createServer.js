@@ -1,3 +1,18 @@
+
+$.ajax({
+    url:'/getUser',
+    contentType: 'application/json',
+    dataType: 'json',
+    type:'post',
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    success:function(data)
+    {
+        document.getElementById('servName').value = "Serveur de "+data.pseudo;
+        console.log('success')
+    }
+})
+
+
 $('#close').click(function(){
     let b = 5;
     setInterval(()=>{
@@ -31,4 +46,12 @@ $('#return1').click(function(){
 
     $('#createServer .CForm .side1').addClass('hide');
 
+})
+$('#tab2,#tab3,#tbb').click(function(){
+    $('#createServer .side1').removeClass('show');
+
+    $('#createServer .side1').addClass('hide');
+    $('#createServer .side2').removeClass('hide');
+
+    $('#createServer .side2').addClass('show');
 })

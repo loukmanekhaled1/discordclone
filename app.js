@@ -7,7 +7,7 @@ const fs = require('fs');
 const cors = require('cors');
 const db_operations = require('./db_operations');
 var port = process.env.PORT || 3000;
-
+const file_upload = require('express-fileupload');
 const bodyParser = require('body-parser');
 
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors({
     credentials:true
 }))
-
+app.use(file_upload());
 app.use(express.static((__dirname+'/views/assets')));
 app.set('views', __dirname+'/views');
 app.set('view engine','ejs');

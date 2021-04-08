@@ -1,7 +1,84 @@
 "use strict"
+
+
 document.title = "Discord";
 var currentUrl = "channels/";
 var currentTitle = "Discord";
+
+$.post({
+    url:'/getGuilds',
+    contentType:'application/json',
+    dataType:'json',
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    success:function(guilds)
+    {
+    
+        guilds.forEach(guild=>{
+        
+            $.post({
+                url:'/getGuildData',
+                
+                data:{
+                    guildID:guild.guildID
+                },
+                success:function(guildData)
+                {
+               
+                   guildData = JSON.parse(guildData);
+                    guildData = guildData[0]
+                    console.log(guildData.name)
+                    var gds = guildData.name.split(' ');
+                    var gtx = "";
+                    for(var i = 0;i<=3;i++)
+                    {
+                        if(gds[i] == undefined) break;
+                        gtx+=gds[i][0];
+                    }
+                   
+                    $('.leftBar .guilds').prepend(`<button onclick='loadGuildContent(this,${guild.guildID})'>${gtx}</button>`)
+
+                }
+            })
+            
+        
+    
+})
+    }
+})
+$('#showDM').click(function(){
+
+    $.ajax({
+        url:'/getUser',
+        contentType: 'application/json',
+        dataType: 'json',
+        type:'post',
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        success:function(data)
+        {
+            
+            $('.selected').removeClass('selected');
+            if(data.lastPage == 0)
+            {
+                $.ajax({
+                    url:'/body/dm.ejs',
+                    success:function(res)
+                    {
+                        $('.container').html(res);
+                       
+                        $('.container .sidebar .bottom .left h2').html(data.pseudo);
+                        if(data.pfp == 0)
+                        {
+                            $('.container .sidebar .bottom .left .image').append('<img src="images/pfp.png"> ')
+                        }
+                    }
+                })
+                $('#showDM').addClass('selected');
+                currentUrl+= "@me";
+                updatePageState(currentTitle,currentUrl);
+            }
+        }
+    })
+})
 $('#addGuild').click(function(){
     $.ajax({
         url:'body/createServer.ejs',
@@ -31,7 +108,10 @@ $('#addGuild').click(function(){
                         $('.container').html(res);
                        
                         $('.container .sidebar .bottom .left h2').html(data.pseudo);
-
+                        if(data.pfp == 0)
+                        {
+                            $('.container .sidebar .bottom .left .image').append('<img src="images/pfp.png"> ')
+                        }
                     }
                 })
                 $('#showDM').addClass('selected');
@@ -44,4 +124,21 @@ $('#addGuild').click(function(){
 function updatePageState(title,url)
 {
  
+}
+function loadGuildContent(elem,guildID){
+ 
+    $.post({
+        url:'/loadGuild',
+        data:{
+            guildID:guildID
+        },
+        success:function(res)
+        {
+            $('.selected').removeClass('selected');
+            elem.classList.add('selected');
+            $('.container').html(res);
+       
+                        
+        }
+    })
 }

@@ -18,7 +18,10 @@
    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  
+    
+}
+a,button{
+    cursor: pointer;
 }
 .error{
     position: absolute;
@@ -273,7 +276,7 @@ transform: translateY(0px) translateZ(0px);
     top:50%;
     transform: translate(-50%,-50%);
 }
-.leftBar .top #showDM:hover,.leftBar .top #showDM.selected{
+.leftBar .top #showDM:hover,.leftBar .top #showDM.selected,.leftBar .guilds .selected{
     background-color: #6478bd;
     border-radius: 20px;
 
@@ -283,9 +286,17 @@ transform: translateY(0px) translateZ(0px);
 }
 .leftBar .guilds{
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
 .leftBar .guilds button{
-    width: 100%;
+    color: #fff;
+    font-weight: 500;
+    text-shadow: 0 0 1px rgba(0,0,0,0.5);
+    margin-bottom: 8px;
+    font-size: 18px;
+    width: 50px;
+    
     height: 50px;
     border:none;
     border-radius: 50%;
@@ -294,17 +305,30 @@ transform: translateY(0px) translateZ(0px);
     cursor: pointer;
 }
 .leftBar .guilds button:hover{
-    background-color: #43b581;
-    color:#fff !important;
     border-radius: 20px;
+    background-color: #7289DA;
+}
+.leftBar .guilds #addGuild{
+    color:#43b581;
+}
+.leftBar .guilds #addGuild:hover{
+    background-color: #43b581;
+    color: #fff;
+}
+.leftBar .guilds #addGuild i{
+    color:inherit;
+
 }
 .leftBar .guilds button:active{
     transform: translateY(2%);
 }
-.leftBar .guilds #addGuild{
+
+.leftBar .guilds #addGuild *{
     padding:12px;
     color:#43b581;
     position: relative;
+    margin-left: 1px;
+    margin-bottom: 1px;
 }
 .leftBar .guilds #addGuild i{
     font-size: 23px;
@@ -688,11 +712,21 @@ transform: translateY(0px) translateZ(0px);
     padding: 0 10px;
     font-size: 12px;
     font-weight: 600;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.151);
     margin:15px 0;
     color:#8e9297;
     justify-content: space-between;
     cursor: pointer;
     font-family: "Roboto";
+}
+.container .sidebar .ctn .c label{
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+.container .sidebar .ctn .c label i{
+    transform: translateY(-25%);
+    margin-right: 5px;
 }
 .container .sidebar .ctn .c:hover label{
     color:#f0f4fa;
@@ -713,8 +747,8 @@ transform: translateY(0px) translateZ(0px);
     width: 100%;
     bottom:0;
     left:0;
-    padding:0 10px 0 13px ;
-    height: 45px;
+    padding:8px 10px 8px 13px ;
+    
     background-color: #292b2f;
     display: flex;
     place-items: center;
@@ -734,12 +768,179 @@ transform: translateY(0px) translateZ(0px);
     background: none;
 }
 .container .sidebar .bottom .right button{
-    padding:6px;
+    padding:17px 8px;
     margin:0 2px;
-    border-radius: 5px;
+    border-radius: 4px;
     
-    color:#fff;
+    color:#b9bbbe;
 }
 .container .sidebar .bottom .right button:hover{
-    background: #00000023;
+    background: #ffffff0e;
+    color: #dddfe2;
+}
+.container .sidebar .bottom .image{
+    width: 35px;
+    height: 35px;
+   margin-right: 8px;
+}
+.container .sidebar .bottom .image img{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.container .sidebar .bottom .block{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    max-width: 50px;
+    overflow: hidden;
+    
+    padding:0;
+}
+.container .sidebar .bottom .block p{
+    font-size: 12px;
+    color:rgba(255, 255, 255, 0.4);
+    display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  max-width: 50px;
+  margin-left: 5px;
+}
+#createServer .side2{
+    position: absolute;
+    top:0;
+    padding:15px;
+    left:0;
+    transform: translateX(-120%);
+    z-index: -1;
+    height: 100%;
+    background: none;
+   
+}
+#createServer .side2 *{
+    color:#000;
+}
+#createServer .side2 .field *{
+    transform: translateX(1.5%);
+}
+#createServer .side2 .field label{
+    color:#6A7480;
+    font-size: 11px;
+    font-weight: 600;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+#createServer .side2 input{
+    background:none;
+    padding:9px;
+    width: 97%;
+   
+    border: 1px solid rgba(0,0,0,0.25);
+}
+#createServer .side2 input:focus{
+    border-color: #7289DA;
+}
+#createServer .iconContainer{
+    position: relative;
+    top:15%;
+    margin-bottom:22px;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    cursor: pointer;
+}
+#createServer .footerF{
+    color:#747F8D;
+    font-size: 12px;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+    margin-top: 8px;
+}
+#createServer .footerF a{
+    font-size: 12px;
+    color:#0067E0;
+    font-weight: 600;
+    text-shadow: 0 0 1px #0068e060;
+
+}
+#createServer .bottom.ff{
+    bottom:0 !important;
+    display: flex;
+    justify-content: space-between;
+    
+} 
+#createServer .bottom.ff *{
+    width: 25%;
+}
+#createServer .bottom.ff .return{
+    margin-left: 200px;
+}
+#createServer .bottom.ff .return:hover{
+    text-decoration: none;
+}
+#createServer .bottom.ff .right{
+   margin-right: 15px;
+}
+#createServer .bottom.ff .right button{
+    background-color: #7289DA;
+}
+#createServer .bottom.ff .right button:hover{
+    background-color: #6a7fce;
+}
+#createServer .bottom.ff .right button:active{
+    background-color: #6478c0;
+}
+.container .sidebar .ctn .channels{
+    color:#8d8e8f;
+}
+.container .sidebar .ctn .channels svg{
+    color:#72767d;
+
+}
+.container .sidebar .ctn .channels .txt,.container .sidebar .ctn .channels .vc{
+    display: flex;
+    
+    place-items: center;
+    font-size: 15px;
+    padding:7px 10px;
+    font-weight: 500;
+    cursor: pointer;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+.container .sidebar .ctn .header .c{
+    margin-bottom: 5px;
+}
+.container .sidebar .ctn .channels .txt:hover,.container .sidebar .ctn .channels .vc:hover{
+    background-color: rgba(99, 118, 153, 0.05);
+    color:#c9c9c9;
+}
+.container .sidebar .ctn .channels .txt:active,.container .sidebar .ctn .channels .vc:active{
+    background-color: rgba(191, 191, 192, 0.06);
+
+    color:#e7e7e7;
+}
+.container .sidebar .ctn .channels .txt:hover svg,.container .sidebar .ctn .channels .vc:hover svg{
+    color:#72767d;
+    
+}
+.container .sidebar .ctn .channels .txt:active svg,.container .sidebar .ctn .channels .vc:active svg{
+    color:#72767d;
+    
+}
+.container .sidebar .ctn .channels .selected{
+    background-color: rgba(191, 191, 192, 0.08);
+
+    color:#f8f8ff;
+
+}
+.container .sidebar .ctn .channels .selected:hover,.container .sidebar .ctn .channels .selected:active{
+    background-color: rgba(191, 191, 192, 0.08);
+    color:#f8f8ff;
+
+}
+.container .sidebar .ctn .channels svg{
+    
+    margin-right: 5px;
 }
