@@ -162,7 +162,7 @@ router.post('/loadGuild',(req,res)=>{
                     
 
                     if(resultT[0]['lastChannel'] == 0){
-                      console.log(guildID)
+                      
                     for(var i = 0;i<=result.length;i++)
                     {
                         if(result[i] == undefined) break;
