@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('http://fonts.cdnfonts.com/css/whitney-2');
 *{
     margin:0;
     padding:0;
@@ -908,6 +909,7 @@ transform: translateY(0px) translateZ(0px);
     cursor: pointer;
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
     border-radius: 3px;
+    margin-bottom: 3px;
 }
 .container .sidebar .ctn .header .c{
     margin-bottom: 5px;
@@ -917,7 +919,7 @@ transform: translateY(0px) translateZ(0px);
     color:#c9c9c9;
 }
 .container .sidebar .ctn .channels .txt:active,.container .sidebar .ctn .channels .vc:active{
-    background-color: rgba(191, 191, 192, 0.06);
+    background-color: rgba(182, 196, 212, 0.045);
 
     color:#e7e7e7;
 }
@@ -943,4 +945,94 @@ transform: translateY(0px) translateZ(0px);
 .container .sidebar .ctn .channels svg{
     
     margin-right: 5px;
+}
+.container .contentBase .msgContainer{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom:25px;
+
+    width: 100%;
+}
+.container .contentBase .msgContainer .separator{
+    margin-bottom: 25px;
+    border-top: 1px solid #42454a;
+}
+.container .contentBase .msgContainer .input{
+    width: 100%;
+    padding:10px 15px;
+    background-color: #40444B;
+    border-radius: 8px;
+    display: flex;
+    position: relative;
+}
+.container .contentBase .msgContainer .input input{
+    border:none;
+    color:#dcddde;
+    caret-color: #fff;
+    background: none;
+    font-size: 15px;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(179, 184, 190, 0.18);
+    font-smooth: 2rem;
+    width: 85%;
+}
+.container .contentBase .msgContainer .input input::placeholder{
+    font-weight: 400;
+
+}
+.container .contentBase .msgContainer .input .rightSide{
+    color:#dcddde;
+
+    position: absolute;
+    right:0;
+    padding:0 15px;
+}
+.container .contentBase .msgContainer .input .f{
+    margin-right: 15px;
+    cursor: pointer;
+    color:#b9bbbe;
+}
+.container .contentBase{
+    padding:20px;
+}
+.container .contentBase .msgContainer .input .rightSide *{
+    cursor: pointer;
+    margin:0 5px;
+    color:#b9bbbe;
+}
+.container .contentBase .heading{
+    text-align: center;
+    color:#fff;
+    font-size: 15px;
+    max-width: 400px;
+    position: relative;
+    top: 24%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.container .contentBase .heading .title{
+    position: relative;
+    width: 65%;
+    top:0;
+    left:50%;
+    transform: translateX(-50%);
+}
+.container .contentBase .heading p{
+    color:#B9BBBE;
+    font-size: 14px;
+    margin:8px 0 14px;
+  
+    font-family: 'Whitney light';
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+   
+}
+.container .contentBase .heading p a{
+    color:#00b0f4;
+    font-size: 12px;
+}
+.container .contentBase .heading p a:hover{
+    text-decoration: underline;
 }

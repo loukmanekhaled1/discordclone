@@ -143,21 +143,40 @@ router.post('/loadGuild',(req,res)=>{
     db.query(`SELECT * from users WHERE ID = ${res.cookies.get('ID')}`,function(err,result){
         if(err) throw err;
         res.locals.user = result[0];
+
+        
+
+
         db.query(`SELECT * FROM guilds WHERE ID = ${guildID}`,function(err,result){
             if(err) throw err;
             res.locals.guild = result[0];
-            db.query(`SELECT * FROM guildmembers WHERE guildID = ${guildID}`,function(err,result)
+            db.query(`SELECT * FROM guildmembers WHERE memberID = ${res.cookies.get('ID')} AND guildID = ${guildID}`,function(err,resultT)
             {
                 if(err) throw err;
-                res.locals.guildmembers = result[0];
+                res.locals.guildmembers = resultT[0];
                 db.query(`SELECT * FROM channels WHERE guildID = ${guildID}`,function(err,result)
                 {
-                    res.locals.guildchannels = result[0];
+                   
+                    res.locals.guildchannels = result;
                     res.render('guildContent',{});
+                    
+
+                    if(resultT[0]['lastChannel'] == 0){
+                      console.log(guildID)
+                    for(var i = 0;i<=result.length;i++)
+                    {
+                        if(result[i] == undefined) break;
+                        if(result[i]['type'] == 'text' || result[i]['type'] == 'voice') return db.query(`UPDATE guildmembers SET lastChannel = ${result[i]['ID']} WHERE guildID = ${guildID} AND memberID = ${res.cookies.get('ID')}`);
+                
+                       
+                    }
+                    
+                }
                 })
+            
             })
         })
-      
+     
     })
     
 })
@@ -168,8 +187,13 @@ router.post('/getGuildCategories',(req,res)=>{
 
     db.query(`SELECT * FROM channels WHERE guildID = ${guildID} AND type = 'category' ORDER BY increment ASC`,function(err,result)
     {
+       
+            if(err) throw err;
+       
         res.send(result);
-        console.log('sended');
+       
+        
+        
     })
 })
 router.post('/getGuildChannels',(req,res)=>{
@@ -178,6 +202,57 @@ router.post('/getGuildChannels',(req,res)=>{
         if(err) throw err;
         res.send(result);
     })
+})
+
+
+
+
+
+router.post('/getSelectedChannel',(req,res)=>{
+   
+    db.query(`SELECT * FROM guildmembers WHERE guildID = ${req.body.guildID} AND memberID = ${res.cookies.get('ID')}`,function(err,result)
+    {
+        if(err) throw err;
+        if(result[0]['lastChannel'] == req.body.channelID)
+        {
+ 
+            res.send('1');
+        }else{
+       
+            res.send('0');
+  
+
+        }
+    })
+})
+
+
+router.post('/changeLastChannel',(req,res)=>{
+    
+    db.query(`SELECT * FROM channels WHERE ID = ${req.body.target}`,function(err,result)
+    {
+        if(err) throw err;
+        db.query(`UPDATE guildmembers SET lastChannel = ${req.body.target} WHERE memberID = ${res.cookies.get('ID')} AND guildID = ${result[0]['guildID']}`);
+        res.send('0');
+    })
+})
+
+router.post('/getGuildMemberData',(req,res)=>{
+    db.query(`SELECT * FROM guildmembers WHERE guildID = ${req.body.guildID} AND memberID = ${res.cookies.get('ID')}`,function(err,result)
+    {
+        if(err) throw err;
+        res.send(result[0]);
+    })
+})
+
+router.post('/postMessage',(req,res)=>{
+    var message = req.body.message;
+    var channelID = req.body.channelID;
+
+db.query(`INSERT INTO messages (channel,sender,content) VALUES (${channelID},${res.cookies.get('ID')},'${message}')`);
+
+res.send('0');
+
 })
 
 module.exports = router;
