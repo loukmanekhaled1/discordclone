@@ -113,7 +113,7 @@ router.post('/createServer',(req,res)=>{
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('category','SALONS TEXTUELS',${maxID},0,1)`);
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('text','general',${maxID},1,0)`);
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('category','SALONS VOCAUX',${maxID},0,2)`);
-        db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('voice','General',${maxID},1,0)`);
+        db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('voice','General',${maxID},2,0)`);
 
     })
     
