@@ -255,4 +255,21 @@ res.send('0');
 
 })
 
+router.post('/getChannelMessages',(req,res)=>{
+    var channelID = req.body.channelID;
+    db.query(`SELECT * FROM messages WHERE channel = ${channelID} ORDER BY ID ASC`,function(err,result)
+    {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+
+
+router.post('/getUserByID',(req,res)=>{
+    db.query(`SELECT * FROM users WHERE ID = ${req.body.userID}`,function(err,result){
+        if(err) throw err;
+        res.send(result[0]);
+    })
+})
+
 module.exports = router;

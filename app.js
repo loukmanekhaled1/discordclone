@@ -5,7 +5,11 @@ const app = express();
 const cookies = require('cookies');
 const fs = require('fs');
 const cors = require('cors');
-const db_operations = require('./db_operations');
+const db_operations = require('./db_operations'),
+tooltipHandler = require('./tooltipHandler'),
+contentHandler = require('./contentHandler');
+
+
 var port = process.env.PORT || 3000;
 const file_upload = require('express-fileupload');
 const bodyParser = require('body-parser');
@@ -24,7 +28,7 @@ app.set('views', __dirname+'/views');
 app.set('view engine','ejs');
 app.engine('ejs', require('ejs').__express);
 app.use(cookies.express("a","b","c"));
-app.use(db_operations);
+app.use(db_operations,tooltipHandler,contentHandler);
 
 app.get('/',(req,res)=>{
   

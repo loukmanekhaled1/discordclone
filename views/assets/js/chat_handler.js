@@ -1,4 +1,5 @@
 
+
 $.post({
     url:'/getGuildMemberData',
     data:{
@@ -35,4 +36,160 @@ document.getElementById('msger').addEventListener('keydown',function()
             }
         })
     }
+})
+setTimeout(()=>{
+    
+        
+
+        $.post({
+            url:'/getChannelMessages',
+            data:{
+                channelID:document.querySelector('.container .sidebar .ctn .selected').getAttribute('channeltarget')
+            },
+            success:function(messages)
+            {
+                
+                        var msgA = 0;
+                        if(!messages[0]) return;
+                        var currentUser = messages[0]['sender'];
+                        messages.forEach((msg)=>{
+                            $.post({
+                    url:'/getUserByID',
+                    data:{
+                        userID:msg.sender
+                    },
+                    success:function(userData)
+                    {
+                        if(msg.sender !== currentUser) {
+                            
+                            currentUser = msg['sender'];
+                            msgA = 0;
+                        }
+                        
+                            //console.log(msg.sender)
+                            console.log(currentUser)
+
+                            if(msgA == 0){
+                              
+                            var msgAC = document.createElement('div'),
+                            header = document.createElement('div'),
+                            pfp = document.createElement('img'),
+                            username = document.createElement('h1'),
+                            msgContent = document.createElement('p');
+                            pfp.setAttribute('width','45px');
+                            pfp.setAttribute('height','45px');
+        
+                            userData.pfp == 1 ? pfp.src = `images/profile_pictures/${userData['ID']}.png` : pfp.src="images/pfp.png";
+                                header.classList.add('header')
+                                msgAC.classList.add('msg');
+                                msgAC.classList.add('msgA');
+                                msgAC.appendChild(header);
+                                header.appendChild(pfp);
+                                username.innerText = userData.pseudo;
+                                msgContent.classList.add('msgContent');
+                               
+                                msgContent.innerText = msg.content;
+                                header.appendChild(username);
+                                msgAC.appendChild(msgContent)
+                            
+                                document.querySelector('.container .messages').appendChild(msgAC);
+                            
+                                msgA++;
+                        }else{
+                            var msgAC = document.createElement('div'),
+                            //header = document.createElement('div'),
+                            //pfp = document.createElement('img'),
+                            //username = document.createElement('h1'),
+                            msgContent = document.createElement('p');
+                            //pfp.setAttribute('width','45px');
+                            //pfp.setAttribute('height','45px');
+        
+                            //userData.pfp == 1 ? pfp.src = `images/profile_pictures/${userData['ID']}.png` : pfp.src="images/pfp.png";
+                                //header.classList.add('header')
+                                msgAC.classList.add('msg');
+                              
+                               // msgAC.appendChild(header);
+                                //header.appendChild(pfp);
+                                //username.innerText = userData.pseudo;
+                                msgContent.classList.add('msgContent');
+                               
+                                msgContent.innerText = msg.content;
+                                //header.appendChild(username);
+                                msgAC.appendChild(msgContent)
+                            
+                                document.querySelector('.container .messages').appendChild(msgAC);
+                               msgA++
+        
+                               if(msgA == 5) return msgA= 0;
+                        }
+                            
+                        
+               
+        
+                        document.querySelector('.container .messages').scrollTop = document.querySelector('.container .messages').scrollHeight;
+        
+                            }
+                        
+                        
+                    })
+                    })
+                }
+                
+                
+        
+                
+            
+})
+
+},100)
+$('.container .messages').scroll(function() {
+    let scrollTop = document.querySelector('.container .messages').scrollTop;
+    let docHeight = document.querySelector('.container .messages').clientHeight;
+    let winHeight = document.querySelector('.container .messages').scrollHeight;
+    let scrollPercent = scrollTop / (docHeight - winHeight);
+    let scrollPercentRounded = Math.round(scrollPercent * 100);
+
+    console.log(`(${scrollPercentRounded}%)`);
+})
+$.post({
+    url:'/guildTooltips',
+    data:{
+        tooltip:'s1'
+    },
+    success:function(res)
+    {
+        document.querySelector('.container .sidebar .top').innerHTML += res;
+      $('.container .sidebar .top .tooltip').css('display','none');
+
+      $('.container .sidebar .top .tooltip div[target="settings"]').click(function()
+{
+    $.post({
+        url:'/loadBody',
+        data:{
+            target:'serverSettings'
+        },
+        success:function(res)
+        {
+            $('body').append(res);
+        }
+    })
+})
+    }
+})
+$('.container .sidebar .top').click(function()
+{
+   
+   if(document.querySelector('.container .sidebar .top .tooltip').style.display == 'none')
+   {
+       $('.container .sidebar .top i').removeClass('fa-chevron-down');
+       $('.container .sidebar .top i').addClass('fa-times');
+
+      $('.container .sidebar .top .tooltip').show(180);
+
+   }else{
+    $('.container .sidebar .top i').addClass('fa-chevron-down');
+    $('.container .sidebar .top i').removeClass('fa-times');
+      $('.container .sidebar .top .tooltip').hide(180);
+
+   }
 })
