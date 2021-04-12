@@ -9,6 +9,7 @@ var db = require('mysql').createConnection({
     database:'discordclone',
     user:'root',
     password:'',
+    charset:'utf8'
 });
 
 
@@ -114,7 +115,8 @@ router.post('/createServer',(req,res)=>{
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('text','general',${maxID},1,0)`);
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('category','SALONS VOCAUX',${maxID},0,2)`);
         db.query(`INSERT INTO channels (type,name,guildID,parent,increment) VALUES('voice','General',${maxID},2,0)`);
-
+        db.query(`INSERT INTO roles (name,perms,guildID,increment,separated,everyoneRole) VALUES('@everyone','010809131415161718202223242526',${maxID},1,1,1)`)
+        db.query(`INSERT INTO guildmemberroles (roleIncrement,givenTo,guildID) VALUES(1,${res.cookies.get('ID')},${maxID})`);
     })
     
     res.redirect('/');
@@ -122,7 +124,7 @@ router.post('/createServer',(req,res)=>{
 
 
 router.post('/getGuilds',(req,res)=>{
-    db.query(`SELECT * FROM guildmembers WHERE memberID = ${res.cookies.get('ID')}`,function(err,result)
+    db.query(`SELECT * FROM guildmembers WHERE memberID = ${res.cookies.get('ID')} ORDER BY ID ASC`,function(err,result)
     {
         if(err) throw err;
         res.send(JSON.stringify(result));
@@ -269,6 +271,65 @@ router.post('/getUserByID',(req,res)=>{
     db.query(`SELECT * FROM users WHERE ID = ${req.body.userID}`,function(err,result){
         if(err) throw err;
         res.send(result[0]);
+    })
+})
+
+router.post('/joinGuild',(req,res)=>{
+    var inviteLink = req.body.invite;
+    if(inviteLink.startsWith('discordjumia.gg/'))
+    {
+        inviteLink = inviteLink.split('discordjumia.gg/');
+        inviteLink = inviteLink[1];
+    }
+    db.query(`SELECT * FROM invites WHERE inviteLink = '${inviteLink}'`,function(err,result){
+        if(err) throw err;
+        if(result.length == 1)
+        {
+            db.query(`SELECT * FROM guildmembers WHERE guildID = ${result[0]['guildTarget']} AND memberID = ${res.cookies.get('ID')}`,function(err,result2){
+                if(err) throw err;
+                if(result2.length == 0)
+                {
+                    db.query(`INSERT INTO guildmembers (memberID,guildID) VALUES(${res.cookies.get('ID')},${result[0]['guildTarget']})`)
+                    db.query(`INSERT INTO guildmemberroles (roleIncrement,givenTo,guildID) VALUES(1,${res.cookies.get('ID')},${result[0]['guildTarget']})`)
+                }else{
+                    //db.query(`UPDATE users SET lastPage = ${result[0]['guildTarget']} WHERE ID = ${res.cookies.get('ID')}`);
+                }
+            })
+            res.send('1');
+        }else{
+            res.send('0');
+        }
+    })
+})
+
+router.post('/getGuildMembers',(req,res)=>{
+    db.query(`SELECT * FROM guildmembers WHERE guildID = ${req.body.guildID}`,function(err,result)
+    {
+        res.send(result);
+    })
+})
+router.post('/getGuildMembersRoles',(req,res)=>{
+    db.query(`SELECT * FROM guildmemberroles WHERE givenTo = ${req.body.member} AND guildID = ${req.body.guildID}`,function(err,result)
+    {
+        if(err) throw err;
+        res.send(result);
+    })
+})
+router.post('/getGuildRoles',(req,res)=>{
+    db.query(`SELECT * FROM roles WHERE guildID = ${req.body.guildID} ORDER BY increment ASC`,function(err,result){
+        if(err) throw err;
+        res.send(result);
+    })
+})
+router.post('/validateRoleExistance',(req,res)=>{
+    var role = req.body.role;
+    var guild = req.body.guildID;
+    db.query(`SELECT * FROM guildmemberroles WHERE guildID = ${guild} AND roleIncrement = ${role}`,function(err,result){
+        if(result.length >= 1){
+            res.send('1')
+        }else{
+            res.send('0');
+        }
     })
 })
 

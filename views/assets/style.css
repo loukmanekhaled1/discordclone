@@ -390,6 +390,12 @@ transform: translateY(0px) translateZ(0px);
     transform: translate(-50%,-50%) scale(0);
     
 }
+.hider1.CC
+{
+    background-color: rgba(0,0,0,0);
+    transition:130ms linear;
+    
+}
 #createServer .CForm button,p,a,div,h1{
     font-family: 'Open Sans';
 }
@@ -773,6 +779,7 @@ transform: translateY(0px) translateZ(0px);
     place-items: center;
     justify-content: space-between;
 }
+
 .container .sidebar .bottom .left,
     .container .sidebar .bottom .right{
     display: flex;
@@ -783,11 +790,15 @@ transform: translateY(0px) translateZ(0px);
     font-family: 'Open Sans';
     color:#fff;
     font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 150px;
 }.container .sidebar .bottom .right *{
     background: none;
 }
 .container .sidebar .bottom .right button{
-    padding:17px 8px;
+    padding:16px 6px;
     margin:0 2px;
     border-radius: 4px;
     
@@ -1029,7 +1040,7 @@ transform: translateY(0px) translateZ(0px);
     width: 425px;
     max-width: 425px;
     position: absolute;
-    top: 24%;
+    top: 50%;
     left:50%;
     transform: translate(-50%,-50%);
 }
@@ -1439,4 +1450,261 @@ transform: translateY(0px) translateZ(0px);
 }
 .settingsCtn .right .view .flex-tab .tab.b .block.assd a:hover{
     text-decoration: underline;
+}
+.createInviteContainer{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: #36393f;
+    border-radius: 4px;
+    overflow: hidden;
+    color:#fff;
+    animation: loadCreateInviteContainer 140ms linear;
+}
+@keyframes loadCreateInviteContainer{
+    from{
+        transform: translate(-50%,-50%) scale(0.3);
+        opacity: 0.4;
+    }
+    75%{
+        transform: translate(-50%,-50%) scale(1.05);
+    }
+    to{
+        transform: translate(-50%,-50%) scale(1);
+        opacity: 1;
+    }
+}
+.createInviteContainer .header{
+    position: relative;
+    top:0;
+    left:0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: space-between;
+    font-family: 'whitney';
+    color:inherit;
+    
+    box-shadow: 0 0 2px 0 #18191c;
+    overflow: hidden;
+    z-index: 1;
+}
+.createInviteContainer .header .head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:20px;
+}
+.createInviteContainer .header .head h1{
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'whitney';
+    max-width: 280px;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-transform: uppercase;
+    margin-right: 75px;
+}
+.createInviteContainer .header .head svg{
+    color: #777a7e;
+    cursor: pointer;
+    transition:color 120ms linear;
+}
+.createInviteContainer .header .head svg:hover{
+    color:#d0d5da;
+}
+.createInviteContainer .header .input{
+    padding:0 10px;
+    border-radius: 4px;
+    background-color: #202225;
+    display: flex;
+    flex-direction: row;
+    cursor: text;
+    flex:1 1 100%;
+    place-items: center;
+    margin:0 20px;
+    margin-bottom: 15px;
+}
+.createInviteContainer .header .input input{
+    width: 90%;
+    height: 28px;
+    font-family: 'whitney book';
+    font-weight: 500;
+    color:#dddfe2;
+    font-size: 14px;
+    border:none;
+    background:none;
+}
+.createInviteContainer .header .input svg{
+    cursor: text;
+    color: #72767d;
+    margin-left: 20px;
+}
+.createInviteContainer .bottom h1.ctitle{
+    display: flex;
+    place-items: center;
+    flex:1 1 100%;
+    color:#fff;
+    text-transform: uppercase;
+   
+    font-size: 12px;
+    font-weight: 600;
+    
+    margin:18px 0 10px 20px;
+    max-width: 100%;
+    word-break:none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color:#8e9297;
+    justify-content: space-between;
+    
+    font-family: "whitney book";
+}
+.createInviteContainer .bottom input{
+    padding:10px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 3px;
+    border: 1px solid #212327;
+    background-color: #303338;
+    color: #e2e2e2;
+    font-family: 'whitney light';
+    transition: border-color 120ms linear;
+    text-shadow: 0 0 1px rgba(99, 101, 104, 0.815);
+    width: calc(100% - 40px);
+    margin:0 20px;
+}
+.createInviteContainer .bottom input:hover{
+    border-color: #000;
+}
+.createInviteContainer .bottom input:focus{
+    border-color: #7289DA;
+}
+.createInviteContainer .bottom p{
+    font-size: 12px;
+    margin: 15px 0 22px 20px;
+    color:#B9BBBE;
+    font-weight: 500;
+    font-family: 'whitney book';
+}
+.createInviteContainer .bottom p a{
+    color:#00B0F4;
+    font-size: inherit;
+}
+.createInviteContainer .bottom p a:hover{
+    text-decoration: underline;
+}
+.createInviteContainer.inviteClose{
+    animation: CICClose 120ms linear;
+    transform: translate(-50%,-50%) scale(0.4);
+    opacity: 0;
+
+}
+@keyframes CICClose{
+    from{
+        transform: translate(-50%,-50%) scale(1);
+        opacity: 1;
+    }
+    to{
+        transform: translate(-50%,-50%) scale(0);
+        opacity: 0;
+    }
+}
+#createServer .CForm .side3{
+    position: absolute;
+    top:0;
+    left:0;
+    padding:15px;
+    z-index: -1;
+}
+#createServer .CForm .side3 .field input{
+    border:none;
+    color:#33383e;
+    background-color: #e0e2e5;
+    padding:10px;
+    font-family: 'whitney light';
+    font-weight: 400;
+    font-size: 16px;
+}
+#createServer .CForm .side3 .bottom{
+    padding:0;
+    padding-top:15px;
+    place-items: center;
+}
+.guildContentR h1.category{
+    display: flex;
+    place-items: center;
+    flex:1 1 100%;
+    color:#fff;
+    text-transform: uppercase;
+   
+    font-size: 13px;
+    font-weight: 500;
+    
+    margin:18px 0 10px 0;
+    max-width: 100%;
+    word-break:none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color:#8e9297;
+    justify-content: space-between;
+    
+    font-family: "Roboto";
+}
+.guildContentR{
+    padding:7px;
+}
+.guildContentR .user img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.guildContentR .user{
+    padding:6px 8px;
+    border-radius: 3px;
+    display: flex;
+    place-items: center;
+    cursor: pointer;
+    margin-bottom: 1px;
+}
+.guildContentR .user:hover{
+    background-color: #4F545C29;
+}
+.guildContentR .user:hover .block h1{
+    color:#dcddde;
+}
+
+.guildContentR .user:active{
+    background-color: #4F545C3D;
+}
+.guildContentR .user:active h1{
+    color:#fff !important;
+}
+.guildContentR .user h1{
+    font-family: 'whitney book';
+    color:#8E9297;
+    font-weight: 400;
+    font-size: 16px;
+    max-width: 72%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.guildContentR .user .block{
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    width: 100%;
+}
+.guildContentR .user .block p{
+    color:#8e9297;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'whitney light';
+    margin-top: 2px;
 }

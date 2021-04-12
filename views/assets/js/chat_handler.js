@@ -14,6 +14,82 @@ $.post({
     }
 })
 
+$.post({
+    url:'/getGuildMembers',
+    data:{
+        guildID:document.querySelector('.leftBar .selected').getAttribute('guildtarget')
+    },
+    success:function(res)
+    {
+        $.post({
+            url:'/getGuildRoles',
+            data:{
+                guildID:document.querySelector('.leftBar .selected').getAttribute('guildtarget')
+            },
+            success:function(roles)
+            {
+                console.log(roles)
+                var currentHTML = '';
+
+                roles.forEach((role)=>{
+                    if(role['separated'] == 0) return;
+                    $.post({
+                        url:'/validateRoleExistance',
+                        data:{
+                            role:role.increment,
+                            guildID:document.querySelector('.leftBar .selected').getAttribute('guildtarget')
+                        },
+                        success:function(vdR)
+                        {
+                            if(vdR == '1')
+                            {
+                                if(role.everyoneRole == 1){
+                                $('.container .guildContentR.right').append(`<div target="1" class="categoryContainer"><h1 class="category">En ligne</h1></div></div>`)
+                                }else{
+                                $('.container .guildContentR.right').append(`<div target="${role.increment}" class="categoryContainer"><h1 class="category" style="color:${role.color !== 0 ? role.color : ''}">${role.name}</h1></div></div>`)
+
+                                }
+                            }
+                        }
+                    })
+                })
+
+        res.forEach((member)=>{
+            var highestRole = 0;
+            $.post({
+            url:'/getGuildMembersRoles',
+            data:{
+                member:member['memberID'],
+                guildID:document.querySelector('.leftBar .selected').getAttribute('guildtarget')
+            },
+            success:function(res2)
+            {
+                res2.forEach((ghr)=>{
+                    if(ghr.roleIncrement > highestRole && roles[ghr.roleIncrement-1]['separated'] !== 0) highestRole = ghr.roleIncrement;
+                })
+                $.post({
+                    url:'/getUserByID',
+                    data:{
+                        userID:member.memberID
+                    },
+                    success:function(memberData)
+                    {
+
+                        $('.container .guildContentR.right .categoryContainer[target="'+highestRole+'"]').append(`<div class="user"><img src="${memberData.pfp !== 0 ? 'images/profile_pictures/'+member.memberID+".png" : 'images/pfp.png'}"><div class="block"><h1>${memberData.pseudo}</h1><p></p></div></div>`);
+                    }
+                })
+            }
+        })
+        })
+        console.log(res);
+        
+            }
+        })
+        
+    }
+})
+
+
 document.getElementById('msger').addEventListener('keydown',function()
 {
     
@@ -166,14 +242,37 @@ $.post({
     $.post({
         url:'/loadBody',
         data:{
-            target:'serverSettings'
+            target:'serverSettings',
         },
         success:function(res)
         {
             $('body').append(res);
         }
     })
+});
+
+//createInvite
+
+$('.container .sidebar .top .tooltip div[target="invite"]').click(function()
+{
+    console.log('aa')
+        $.post({
+            url:'/loadBody',
+            data:{
+                target:'createInvite',
+            guildID:document.querySelector('.leftBar .selected').getAttribute('guildtarget')
+
+            },
+            success:function(res)
+            {
+                $('body').append(res);
+            }
+        })
+
+
 })
+
+
     }
 })
 $('.container .sidebar .top').click(function()

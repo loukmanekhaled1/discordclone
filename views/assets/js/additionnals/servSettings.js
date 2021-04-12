@@ -31,3 +31,6 @@ $('#settings .left .tab[target="general"]').click(function()
     $('#settings .left .tab.selected').removeClass('selected');
     $(this).addClass('selected');
 })
+$('#changeServNI').keydown('keypress',function (){
+    
+});
