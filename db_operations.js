@@ -9,7 +9,7 @@ var db = require('mysql').createConnection({
     database:'discordclone',
     user:'root',
     password:'',
-    charset:'utf8'
+    charset:'utf8mb4'
 });
 
 

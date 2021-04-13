@@ -46,7 +46,7 @@ $.post({
     }
 })
 $('#showDM').click(function(){
-
+    if(document.getElementById('showDM').classList.contains('selected')) return;
     $.ajax({
         url:'/getUser',
         contentType: 'application/json',
@@ -125,18 +125,20 @@ function updatePageState(title,url)
 {
  
 }
-function loadGuildChannels(type,elem,guildID){
+async function loadGuildChannels(type,elem,guildID){
+
+    if(elem.classList.contains('selected')) return;
  
-    $.post({
+    await $.post({
         url:'/loadGuild',
         data:{guildID:guildID},
-        success:function(res)
+        success:async function(res)
         {
             if(type == 'a'){
             $('.leftBar .selected').removeClass('selected');
             elem.classList.add('selected');
             }
-$('.container').html(res);
+            await $('.container').html(res);
             $.post({
                 url:'/getUser',
                 contentType: 'application/json',

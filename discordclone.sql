@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 09, 2021 at 10:24 PM
+-- Generation Time: Apr 13, 2021 at 09:41 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.3.21
 
@@ -56,6 +56,23 @@ CREATE TABLE IF NOT EXISTS `dm` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `guildmemberroles`
+--
+
+DROP TABLE IF EXISTS `guildmemberroles`;
+CREATE TABLE IF NOT EXISTS `guildmemberroles` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `roleIncrement` int NOT NULL,
+  `givenFrom` int NOT NULL,
+  `givenTo` int NOT NULL,
+  `givenAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `guildID` int NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `guildmembers`
 --
 
@@ -66,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `guildmembers` (
   `isOwner` tinyint NOT NULL,
   `banned` tinyint NOT NULL,
   `guildID` int NOT NULL,
+  `aka` varchar(30) NOT NULL,
   `memberFrom` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastChannel` int NOT NULL,
   PRIMARY KEY (`ID`)
@@ -89,6 +107,24 @@ CREATE TABLE IF NOT EXISTS `guilds` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `invites`
+--
+
+DROP TABLE IF EXISTS `invites`;
+CREATE TABLE IF NOT EXISTS `invites` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `guildTarget` int NOT NULL,
+  `inviteLink` varchar(30) NOT NULL,
+  `vanity` tinyint NOT NULL,
+  `inviterID` int NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `maxUsages` int NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `messages`
 --
 
@@ -101,6 +137,28 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `modified` tinyint NOT NULL,
   `replyTo` int NOT NULL,
   `sendedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `perms` text NOT NULL,
+  `guildID` int NOT NULL,
+  `color` varchar(30) NOT NULL,
+  `isManagable` tinyint NOT NULL,
+  `mentionnedByAll` tinyint NOT NULL,
+  `separated` int NOT NULL,
+  `increment` int NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `everyoneRole` tinyint NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

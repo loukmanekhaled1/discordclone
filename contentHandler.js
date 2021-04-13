@@ -15,6 +15,7 @@ router.post('/loadBody',(req,res)=>{
             database:'discordclone',
             user:'root',
             password:'',
+            charset:'utf8mb4'
         })
         db.query(`SELECT * FROM invites WHERE guildTarget = ${req.body.guildID} AND inviterID = ${res.cookies.get('ID')}`,function(err,result){
             if(err) throw err;

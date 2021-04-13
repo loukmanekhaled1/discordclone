@@ -1120,6 +1120,9 @@ transform: translateY(0px) translateZ(0px);
     font-weight: 300;
     font-family: 'whitney light';
 }
+.scrollbarA{
+    overflow-x: hidden !important;
+}
 .scrollbarA::-webkit-scrollbar{
     width: 7px;
     border-radius: 10px;
@@ -1640,6 +1643,7 @@ transform: translateY(0px) translateZ(0px);
     place-items: center;
     flex:1 1 100%;
     color:#fff;
+    
     text-transform: uppercase;
    
     font-size: 13px;
@@ -1652,7 +1656,7 @@ transform: translateY(0px) translateZ(0px);
     text-overflow: ellipsis;
     color:#8e9297;
     justify-content: space-between;
-    
+    margin-left: 8px;
     font-family: "Roboto";
 }
 .guildContentR{
@@ -1675,14 +1679,14 @@ transform: translateY(0px) translateZ(0px);
 .guildContentR .user:hover{
     background-color: #4F545C29;
 }
-.guildContentR .user:hover .block h1{
+.guildContentR .user.noColor:hover .block h1{
     color:#dcddde;
 }
 
 .guildContentR .user:active{
     background-color: #4F545C3D;
 }
-.guildContentR .user:active h1{
+.guildContentR .user.noColor:active h1{
     color:#fff !important;
 }
 .guildContentR .user h1{
@@ -1707,4 +1711,38 @@ transform: translateY(0px) translateZ(0px);
     font-weight: 400;
     font-family: 'whitney light';
     margin-top: 2px;
+}
+.settingsCtn .view-2 .role{
+    padding:8px;
+    border-radius: 4px;
+    color:#B9BBBE;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'whitney book';
+}
+.settingsCtn .view-2 .rolesList{
+    width: 185px;
+}
+.settingsCtn .view-2 .role.b:hover{
+    background-color: #4F545C29;
+    color:#dcddde;
+}
+.settingsCtn .view-2 .role.b:active{
+    background-color: #4F545C3D;
+    color:#fff;
+}
+.settingsCtn .view-2 .rolesList .header{
+    width: 100%;
+    display: flex;
+    place-items: center;
+    margin-bottom: 8px;
+    justify-content: space-between;
+}
+.settingsCtn .view-2 .rolesList .header img{
+    cursor: pointer;
+    filter: brightness(0.8);
+}
+.settingsCtn .view-2 .rolesList .header img:hover{
+    filter: none;
 }
