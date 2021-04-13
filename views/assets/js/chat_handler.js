@@ -1,4 +1,61 @@
+"use strict"
+function msgInterval(){
+setInterval(()=>{
+    var channel = $('.container .sidebar .selected').attr('channeltarget');
+    if(!channel) return;
+    $.post({
+        url:'/loadMessages',
+        data:{
+            channel:channel
+        },
+        success:function(res){
+            let scrollTop = document.querySelector('.container .messages').scrollTop;
+    let docHeight = document.querySelector('.container .messages').clientHeight;
+    let winHeight = document.querySelector('.container .messages').scrollHeight;
+    let scrollPercent = scrollTop / (docHeight - winHeight);
+    let scrollPercentRounded = Math.round(scrollPercent * 100);
+            
+            var rSplit = res.split($('.container .messages .msgLOB').html().trim()).slice(1);
+           $('.container .messages .msgLOB').append(rSplit);
+            
+            if(scrollPercentRounded == -100)
+            {
+                document.querySelector('.container .messages').scrollTop = document.querySelector('.container .messages').scrollHeight;
+            }
 
+        }
+    })
+},3500)
+}
+msgInterval();
+
+function msgLoad(){
+    var channel = $('.container .sidebar .selected').attr('channeltarget');
+    if(!channel) return;
+    $.post({
+        url:'/loadMessages',
+        data:{
+            channel:channel
+        },
+        success:function(res){
+            let scrollTop = document.querySelector('.container .messages').scrollTop;
+    let docHeight = document.querySelector('.container .messages').clientHeight;
+    let winHeight = document.querySelector('.container .messages').scrollHeight;
+    let scrollPercent = scrollTop / (docHeight - winHeight);
+    let scrollPercentRounded = Math.round(scrollPercent * 100);
+            
+            var rSplit = res.split($('.container .messages .msgLOB').html().trim()).slice(1);
+           $('.container .messages .msgLOB').append(rSplit);
+            //$('.container .messages .msgLOB').html(res);
+            
+            if(scrollPercentRounded == -100)
+            {
+                document.querySelector('.container .messages').scrollTop = document.querySelector('.container .messages').scrollHeight;
+            }
+
+        }
+    })
+}
 
 $.post({
     url:'/getGuildMemberData',
@@ -73,7 +130,6 @@ $.post({
                     },
                     success: function(memberData)
                     {
-                        console.log(highestRole)
                          $('.container .guildContentR.right .categoryContainer[target="'+highestRole+'"]').append(`<div class="user ${roles[highestRole - 1].color != 0 ? '' : 'noColor'}"><img src="${memberData.pfp !== 0 ? 'images/profile_pictures/'+member.memberID+".png" : 'images/pfp.png'}"><div class="block"><h1 style="color:${roles[highestRole-1].color !== 0 ? roles[highestRole-1].color : ''};">${memberData.pseudo}</h1><p></p></div></div>`);
                     }
                 })
@@ -126,6 +182,16 @@ document.getElementById('msger').addEventListener('keydown',function()
             success:function(res)
             {
                 input.value = '';
+                let scrollTop = document.querySelector('.container .messages').scrollTop;
+    let docHeight = document.querySelector('.container .messages').clientHeight;
+    let winHeight = document.querySelector('.container .messages').scrollHeight;
+    let scrollPercent = scrollTop / (docHeight - winHeight);
+    let scrollPercentRounded = Math.round(scrollPercent * 100);
+            if(scrollPercentRounded == -100)
+            {
+                document.querySelector('.container .messages').scrollTop = document.querySelector('.container .messages').scrollHeight;
+                msgLoad();
+            }
             }
         })
     }
@@ -159,8 +225,6 @@ setTimeout(()=>{
                             msgA = 0;
                         }
                         
-                            //console.log(msg.sender)
-                            console.log(currentUser)
 
                             if(msgA == 0){
                               
@@ -185,7 +249,7 @@ setTimeout(()=>{
                                 header.appendChild(username);
                                 msgAC.appendChild(msgContent)
                             
-                                document.querySelector('.container .messages').appendChild(msgAC);
+                                document.querySelector('.container .messages .msgLOB').appendChild(msgAC);
                             
                                 msgA++;
                         }else{
@@ -210,7 +274,7 @@ setTimeout(()=>{
                                 //header.appendChild(username);
                                 msgAC.appendChild(msgContent)
                             
-                                document.querySelector('.container .messages').appendChild(msgAC);
+                                document.querySelector('.container .messages .msgLOB').appendChild(msgAC);
                                msgA++
         
                                if(msgA == 5) return msgA= 0;
@@ -236,13 +300,7 @@ setTimeout(()=>{
 
 },100)
 $('.container .messages').scroll(function() {
-    let scrollTop = document.querySelector('.container .messages').scrollTop;
-    let docHeight = document.querySelector('.container .messages').clientHeight;
-    let winHeight = document.querySelector('.container .messages').scrollHeight;
-    let scrollPercent = scrollTop / (docHeight - winHeight);
-    let scrollPercentRounded = Math.round(scrollPercent * 100);
-
-    console.log(`(${scrollPercentRounded}%)`);
+    
 })
 $.post({
     url:'/guildTooltips',
@@ -272,7 +330,6 @@ $.post({
 
 $('.container .sidebar .top .tooltip div[target="invite"]').click(function()
 {
-    console.log('aa')
         $.post({
             url:'/loadBody',
             data:{

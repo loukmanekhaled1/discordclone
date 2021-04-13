@@ -333,4 +333,19 @@ router.post('/validateRoleExistance',(req,res)=>{
     })
 })
 
+router.post('/loadMessages',(req,res)=>{
+    var channel = req.body.channel;
+    db.query(`SELECT * FROM messages WHERE channel = ${channel}`,function(err,result){
+        if(err) throw err;
+        db.query(`SELECT * FROM users`,function(err,result2){
+            if(err) throw err;
+            res.render('assets/body/loadMessages',{
+            messages:result,
+            users:result2
+        });
+        })
+        
+    }) 
+})
+
 module.exports = router;
