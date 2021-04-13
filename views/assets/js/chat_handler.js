@@ -18,7 +18,7 @@ setInterval(()=>{
             var rSplit = res.split($('.container .messages .msgLOB').html().trim()).slice(1);
            $('.container .messages .msgLOB').append(rSplit);
             
-            if(scrollPercentRounded == -100)
+            if(scrollPercentRounded >= -99)
             {
                 document.querySelector('.container .messages').scrollTop = document.querySelector('.container .messages').scrollHeight;
             }
@@ -30,6 +30,7 @@ setInterval(()=>{
 msgInterval();
 
 function msgLoad(){
+    
     var channel = $('.container .sidebar .selected').attr('channeltarget');
     if(!channel) return;
     $.post({
@@ -48,7 +49,7 @@ function msgLoad(){
            $('.container .messages .msgLOB').append(rSplit);
             //$('.container .messages .msgLOB').html(res);
             
-            if(scrollPercentRounded == -100)
+            if(scrollPercentRounded >= -99)
             {
                 document.querySelector('.container .messages').scrollTop = document.querySelector('.container .messages').scrollHeight;
             }
@@ -187,7 +188,7 @@ document.getElementById('msger').addEventListener('keydown',function()
     let winHeight = document.querySelector('.container .messages').scrollHeight;
     let scrollPercent = scrollTop / (docHeight - winHeight);
     let scrollPercentRounded = Math.round(scrollPercent * 100);
-            if(scrollPercentRounded == -100)
+            if(scrollPercentRounded >= -99)
             {
                 document.querySelector('.container .messages').scrollTop = document.querySelector('.container .messages').scrollHeight;
                 msgLoad();
