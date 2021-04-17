@@ -10,13 +10,18 @@ router.post('/loadBody',(req,res)=>{
     }
     if(req.body.target == 'createInvite')
     {
-        var db = require('mysql').createConnection({
-            host:'localhost',
-            database:'discordclone',
-            user:'root',
-            password:'',
-            charset:'utf8mb4'
-        })
+        const host = process.env.MYSQL_ADDON_HOST;
+const dbname = process.env.MYSQL_ADDON_DB;
+const user = process.env.MYSQL_ADDON_USER;
+const password = process.env.MYSQL_ADDON_PASSWORD;
+const uri = process.env.MYSQL_ADDON_URI;
+
+var db = require('mysql').createConnection({
+    host:host,
+    database:dbname,
+    user:user,
+    password:password
+});
         db.query(`SELECT * FROM invites WHERE guildTarget = ${req.body.guildID} AND inviterID = ${res.cookies.get('ID')}`,function(err,result){
             if(err) throw err;
             if(result.length == 0)
