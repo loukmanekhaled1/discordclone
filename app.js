@@ -10,6 +10,10 @@ tooltipHandler = require('./tooltipHandler'),
 contentHandler = require('./contentHandler');
 
 
+var server = require('https').Server(app);
+var io = require('socket.io')(server, {});
+
+
 var port = process.env.PORT || 3000;
 const file_upload = require('express-fileupload');
 const bodyParser = require('body-parser');
@@ -60,6 +64,6 @@ app.get('*',(req,res)=>{
     res.render('errors/404');
 
 })
-app.listen(port,"0.0.0.0",()=>{
+server.listen(port,()=>{
     console.log(`Server live on port ${port}`);
 })
