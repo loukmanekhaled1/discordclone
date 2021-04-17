@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `discordclone`
 --
-CREATE DATABASE IF NOT EXISTS `discordclone` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `discordclone`;
+
 
 -- --------------------------------------------------------
 
@@ -38,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `channels` (
   `parent` int NOT NULL,
   `increment` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `dm` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `channelID` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -68,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `guildmemberroles` (
   `givenAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `guildID` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -87,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `guildmembers` (
   `memberFrom` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastChannel` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -102,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `guilds` (
   `icon` tinyint NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -120,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `invites` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `maxUsages` int NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -138,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `replyTo` int NOT NULL,
   `sendedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -160,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `everyoneRole` tinyint NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
