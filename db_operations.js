@@ -66,7 +66,7 @@ router.post('/register',(req,res)=>{
             res.locals.user = result[0];
             res.send('0');
         }else{
-            db.query(`INSERT INTO users (pseudo,email,password,birthdayDate) VALUES('${pseudo}','${email}','${password}','${birthdayDate}')`);
+            db.query(`INSERT INTO users (username,email,password,birthdayDate) VALUES('${pseudo}','${email}','${password}','${birthdayDate}')`);
             db.query(`SELECT * FROM users WHERE email = '${email}' AND password = '${password}'`,function(err,result){
          
                 res.cookies.set('ID',result[0]['ID']);
