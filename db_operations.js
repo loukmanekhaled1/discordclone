@@ -1,15 +1,19 @@
+require('dotenv').config();
 const express = require('express');
 
 const router = express.Router();
 
-
+const host = process.env.MYSQL_ADDON_HOST;
+const dbname = process.env.MYSQL_ADDON_DB;
+const user = process.env.MYSQL_ADDON_USER;
+const password = process.env.MYSQL_ADDON_PASSWORD;
+const uri = process.env.MYSQL_ADDON_URI;
 
 var db = require('mysql').createConnection({
-    host:'localhost',
-    database:'discordclone',
-    user:'root',
-    password:'',
-    charset:'utf8mb4'
+    host:host,
+    database:dbname,
+    user:user,
+    password:password
 });
 
 
