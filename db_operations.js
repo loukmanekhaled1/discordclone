@@ -1,19 +1,15 @@
-require('dotenv').config();
 const express = require('express');
 
 const router = express.Router();
 
-const host = process.env.MYSQL_ADDON_HOST;
-const dbname = process.env.MYSQL_ADDON_DB;
-const user = process.env.MYSQL_ADDON_USER;
-const password = process.env.MYSQL_ADDON_PASSWORD;
-const uri = process.env.MYSQL_ADDON_URI;
+
 
 var db = require('mysql').createConnection({
-    host:host,
-    database:dbname,
-    user:user,
-    password:password
+    host:'localhost',
+    database:'discordclone',
+    user:'root',
+    password:'',
+    charset:'utf8mb4'
 });
 
 
@@ -25,7 +21,7 @@ router.post('/login',(req,res)=>{
     var user = req.body.email;
     var password = req.body.password;
 
-    db.query(`SELECT * FROM users WHERE email = '${user}' AND password = '${password}'`,function(err,result){
+    db.query(`SELECT * FROM users WHERE email = '${user}' AND password = MD5('${password}')`,function(err,result){
         if(err) throw err;
   
         if(result.length == 1)
@@ -35,7 +31,7 @@ router.post('/login',(req,res)=>{
           
             return res.send('0');
         }else{
-            db.query(`SELECT * FROM users WHERE mobileNumber = '${user}' AND password = '${password}'`,function(err,result){
+            db.query(`SELECT * FROM users WHERE mobileNumber = '${user}' AND password = MD5('${password}')`,function(err,result){
              if(result.length == 1)
              {
                 locals.res.cookies.set('ID',result[0]['ID']);
@@ -66,8 +62,8 @@ router.post('/register',(req,res)=>{
             res.locals.user = result[0];
             res.send('0');
         }else{
-            db.query(`INSERT INTO users (username,email,password,birthdayDate) VALUES('${pseudo}','${email}','${password}','${birthdayDate}')`);
-            db.query(`SELECT * FROM users WHERE email = '${email}' AND password = '${password}'`,function(err,result){
+            db.query(`INSERT INTO users (pseudo,email,password,birthdayDate) VALUES('${pseudo}','${email}',MD5('${password}'),'${birthdayDate}')`);
+            db.query(`SELECT * FROM users WHERE email = '${email}' AND password = MD5('${password}')`,function(err,result){
          
                 res.cookies.set('ID',result[0]['ID']);
                 res.locals.user = result[0];
